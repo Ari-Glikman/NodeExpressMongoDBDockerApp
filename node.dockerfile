@@ -17,14 +17,14 @@
 # docker run -d --name my-mongodb mongo
 # docker run -d -p 3000:3000 --link my-mongodb:mongodb --name nodeapp danwahlin/nodeapp
 
-FROM        node:alpine
+FROM        node:15.9.0-alpine
 
 LABEL       author="Dan Wahlin"
 
 ARG         PACKAGES=nano
 
-ENV         TERM xterm
-RUN         apk update && apk add $PACKAGES
+ENV         NODE_ENV=production
+ENV         PORT=3000
 
 WORKDIR     /var/www
 COPY        package.json package-lock.json ./
